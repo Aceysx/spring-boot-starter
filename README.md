@@ -1,6 +1,6 @@
 #### 启动步骤
 
-1. 创建数据库(数据库信息见 `/src/main/resources/application.yml),可根据自己需要修改
+1. 创建数据库(数据库信息见 `/src/main/resources/application.yml`),可根据自己需要修改
 
 2. 启动 
 ```
