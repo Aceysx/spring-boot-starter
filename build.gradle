@@ -5,7 +5,7 @@ buildscript {
 
     repositories {
         maven {
-            url 'http://ec2-54-223-172-127.cn-north-1.compute.amazonaws.com.cn:8081/repository/maven-public/'
+            url 'https://maven.aliyun.com/repository/central/'
         }
     }
 
@@ -30,7 +30,7 @@ version '0.0.1-SNAPSHOT'
 
 repositories {
     maven {
-        url 'http://ec2-54-223-172-127.cn-north-1.compute.amazonaws.com.cn:8081/repository/maven-public/'
+        url 'https://maven.aliyun.com/repository/central/'
     }
 }
 
