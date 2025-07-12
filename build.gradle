@@ -1,6 +1,7 @@
 buildscript {
     project.ext {
-        bootVersion = '2.0.4.RELEASE'
+        bootVersion = '2.7.18'
+        flywayVersion = '7.15.0'
     }
 
     repositories {
@@ -10,10 +11,10 @@ buildscript {
     }
 
     dependencies {
-        classpath "io.spring.gradle:dependency-management-plugin:0.6.0.RELEASE"
+        classpath "io.spring.gradle:dependency-management-plugin:1.1.4"
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${project.bootVersion}"
-        classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.0.1.RELEASE"
-        classpath "org.flywaydb:flyway-gradle-plugin:5.0.7"
+        classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:3.1.8"
+        classpath "org.flywaydb:flyway-gradle-plugin:${project.flywayVersion}"
 
     }
 }
@@ -28,40 +29,50 @@ apply plugin: 'groovy'
 group 'cn.thoughtworks.school.starter'
 version '0.0.1-SNAPSHOT'
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
 repositories {
     maven {
         url 'https://maven.aliyun.com/repository/central/'
     }
 }
 
-sourceCompatibility = 1.8
-
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter'
-    compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-    compile 'org.springframework.boot:spring-boot-starter-data-rest'
-    compile 'org.springframework.boot:spring-boot-starter-actuator'
-    compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.springframework.boot:spring-boot-devtools'
-    compile 'mysql:mysql-connector-java:5.1.6'
-    compile 'org.apache.httpcomponents:httpclient:4.4'
-    compile 'org.apache.httpcomponents:httpmime:4.4'
-    compile 'org.json:json:20140107'
-    compile 'org.flywaydb:flyway-core'
-    compile 'org.flywaydb:flyway-core:5.0.7'
-    compile 'commons-io:commons-io:2.5'
-    compileOnly 'org.projectlombok:lombok:1.18.0'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-devtools'
+    implementation 'mysql:mysql-connector-java:8.0.33'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+    implementation 'org.apache.httpcomponents:httpmime:4.5.13'
+    implementation 'org.json:json:20230227'
+    implementation "org.flywaydb:flyway-core:${project.flywayVersion}"
+    implementation "org.flywaydb:flyway-mysql"
+    implementation 'commons-io:commons-io:2.11.0'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
 
-    testCompile 'org.projectlombok:lombok:1.18.0'
-    testCompile 'org.codehaus.groovy:groovy-all:2.4.6'
-    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
-    testCompile 'org.spockframework:spock-spring:1.0-groovy-2.4'
+
+    testImplementation 'org.projectlombok:lombok:1.18.30'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
+    testImplementation 'org.codehaus.groovy:groovy-all:3.0.19'
+    testImplementation 'org.spockframework:spock-core:2.3-groovy-3.0'
+    testImplementation 'org.spockframework:spock-spring:2.3-groovy-3.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.SR1"
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:2021.0.8"
     }
 }

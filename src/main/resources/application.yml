@@ -2,7 +2,7 @@
 database:
   url: jdbc:mysql://localhost:3306/starterTest?useUnicode=true&characterEncoding=utf-8
   username: root
-  password: pass
+  password: P@ss12345678
 spring:
   datasource:
     url: ${database.url}
@@ -11,5 +11,13 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     hibernate:
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: validate
+    show-sql: true
+    naming:
+      physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+application:
+  security:
+    jwt:
+      secret-key: NDI4ZGE4MmYwYjZlZjE5OGY0ZGY5YjI3MDIyMWVjZGIxMjcxMmE4MjFhY2Y3Y2IzMzI0ZWE4NmRhOTczM2M1Yg==
+      expiration: 86400000 # 24 hours
